@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ماء قريب | خريطة تونس</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container header-content">
+
+        <div class="logo">
+            <span class="logo-icon">💧</span>
+
+            <div>
+                <h1>ماء قريب</h1>
+                <p>وين نلقى الماء؟</p>
+            </div>
+        </div>
+
+        <div class="header-actions">
+
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button">
+
+                <span id="themeIcon">🌙</span>
+                <span id="themeText">الوضع الداكن</span>
+
+            </button>
+
+            <button
+                class="btn btn-outline"
+                id="reportHeaderBtn"
+                type="button">
+
+                + بلّغ على توفر الماء
+
+            </button>
+
+        </div>
+
+    </div>
+</header>
+
+
+<main>
+
+<section class="hero">
+
+    <div class="container">
+
+        <span class="badge">
+            💧 معلومات من الناس للناس
+        </span>
+
+        <h2>
+            شوف وين تلقى
+            <span>قوارير الماء</span>
+            في منطقتك
+        </h2>
+
+        <p>
+            اختار ولايتك ومعتمديتك وشوف آخر المعلومات
+            على توفر قوارير الماء والأسعار المبلّغ عليها.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="location-section">
+
+    <div class="container">
+
+        <div class="section-card">
+
+            <div class="section-title">
+
+                <span>📍</span>
+
+                <div>
+                    <h3>وين إنت؟</h3>
+                    <p>باش نوريك المعلومات الأقرب ليك.</p>
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label for="governorate">
+                        الولاية
+                    </label>
+
+                    <select id="governorate">
+
+                        <option value="">
+                            اختار الولاية
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="delegation">
+                        المعتمدية
+                    </label>
+
+                    <select
+                        id="delegation"
+                        disabled>
+
+                        <option value="">
+                            اختار المعتمدية
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="map-section">
+
+    <div class="container">
+
+        <div class="section-heading map-heading">
+
+            <div>
+
+                <span class="small-label">
+                    خريطة الحالة
+                </span>
+
+                <h2>
+                    خريطة تونس حسب توفر الماء
+                </h2>
+
+            </div>
+
+
+            <div class="map-legend">
+
+                <span>
+                    <i class="legend-dot gray"></i>
+                    لا توجد معلومات
+                </span>
+
+                <span>
+                    <i class="legend-dot green"></i>
+                    متوفر
+                </span>
+
+                <span>
+                    <i class="legend-dot orange"></i>
+                    ناقص
+                </span>
+
+                <span>
+                    <i class="legend-dot red"></i>
+                    مفقود
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="map-card">
+
+            <div
+                id="tunisiaMap"
+                class="tunisia-map">
+
+                <div class="map-loading">
+                    جاري تحميل الخريطة...
+                </div>
+
+            </div>
+
+            <p class="map-note">
+                كل ولاية تظهر باللون حسب آخر بلاغ صالح خلال آخر 24 ساعة.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section
+    class="dashboard"
+    id="dashboard">
+
+    <div class="container">
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <span class="small-label">
+                    الحالة الحالية
+                </span>
+
+                <h2 id="selectedLocation">
+                    اختار موقعك
+                </h2>
+
+            </div>
+
+            <span
+                class="last-update"
+                id="lastUpdate">
+
+                --
+
+            </span>
+
+        </div>
+
+
+        <div class="availability-card">
+
+            <div class="availability-top">
+
+                <div>
+
+                    <span class="small-label">
+                        توفر قوارير الماء
+                    </span>
+
+                    <div class="availability-status">
+
+                        <span
+                            class="status-dot"
+                            id="statusDot">
+                        </span>
+
+                        <strong id="availabilityText">
+                            لا توجد معلومات
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="score">
+
+                    <strong id="availabilityScore">
+                        --
+                    </strong>
+
+                    <span>
+                        مستوى التوفر
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    id="progressBar">
+                </div>
+
+            </div>
+
+
+            <div class="reports-summary">
+
+                <span>
+                    🟢
+                    <b id="availableReports">0</b>
+                    متوفر
+                </span>
+
+                <span>
+                    🟠
+                    <b id="limitedReports">0</b>
+                    ناقص
+                </span>
+
+                <span>
+                    🔴
+                    <b id="emptyReports">0</b>
+                    مفقود
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="small-label">
+                    حسب القرب
+                </span>
+
+                <h2>
+                    المناطق القريبة منك
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="areas-grid"
+            id="areasGrid">
+
+        </div>
+
+
+        <div class="reports-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="small-label">
+                        بلاغات الناس
+                    </span>
+
+                    <h2>
+                        آخر البلاغات
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="reports-list"
+                id="reportsList">
+
+                <div class="empty-reports">
+                    اختار الولاية والمعتمدية باش تظهر البلاغات.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="report-card">
+
+            <div class="report-icon">
+                💧
+            </div>
+
+
+            <div class="report-content">
+
+                <h3>
+                    عندك معلومة جديدة؟
+                </h3>
+
+                <p>
+                    ساعد الناس في منطقتك وبلّغ على توفر
+                    قوارير الماء والسعر اللي لقيتو.
+                </p>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                id="reportBtn"
+                type="button">
+
+                بلّغ الآن
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- MODAL -->
+
+<div
+    class="modal"
+    id="reportModal">
+
+    <div class="modal-overlay"></div>
+
+
+    <div class="modal-content">
+
+        <button
+            class="modal-close"
+            id="closeModal"
+            type="button">
+
+            ×
+
+        </button>
+
+
+        <div class="modal-header">
+
+            <span class="modal-icon">
+                💧
+            </span>
+
+            <h2>
+                بلّغ على الوضع
+            </h2>
+
+            <p>
+                معلومات بسيطة تاخذ منك ثواني.
+            </p>
+
+        </div>
+
+
+        <!-- STEP 1 -->
+
+        <div
+            class="report-step active"
+            id="step1">
+
+            <label>
+                شنوّة لقيت؟
+            </label>
+
+
+            <div class="choice-grid">
+
+                <button
+                    class="choice"
+                    data-availability="available"
+                    type="button">
+
+                    <span>🟢</span>
+
+                    <strong>
+                        الماء موجود
+                    </strong>
+
+                    <small>
+                        لقيت قوارير متوفرة
+                    </small>
+
+                </button>
+
+
+                <button
+                    class="choice"
+                    data-availability="limited"
+                    type="button">
+
+                    <span>🟠</span>
+
+                    <strong>
+                        الماء ناقص
+                    </strong>
+
+                    <small>
+                        فما كمية محدودة
+                    </small>
+
+                </button>
+
+
+                <button
+                    class="choice"
+                    data-availability="empty"
+                    type="button">
+
+                    <span>🔴</span>
+
+                    <strong>
+                        ما لقيتش
+                    </strong>
+
+                    <small>
+                        الماء مفقود
+                    </small>
+
+                </button>
+
+            </div>
+
+
+            <div class="report-place">
+
+                <label for="reportPlace">
+                    فين لقيت الماء؟
+                </label>
+
+                <input
+                    type="text"
+                    id="reportPlace"
+                    maxlength="120"
+                    placeholder="مثال: نهج فلسطين، قدّام المغازة..."
+                    autocomplete="off">
+
+                <small>
+                    اكتب النهج، الحومة، المغازة ولا أي بلاصة تساعد الناس تلقاه.
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- STEP 2 -->
+
+        <div
+            class="report-step"
+            id="step2">
+
+            <label>
+                نوع القارورة
+            </label>
+
+
+            <div class="bottle-grid">
+
+                <button
+                    class="bottle-choice"
+                    data-size="0.5"
+                    type="button">
+                    0.5 L
+                </button>
+
+                <button
+                    class="bottle-choice"
+                    data-size="1"
+                    type="button">
+                    1 L
+                </button>
+
+                <button
+                    class="bottle-choice"
+                    data-size="1.5"
+                    type="button">
+                    1.5 L
+                </button>
+
+                <button
+                    class="bottle-choice"
+                    data-size="2"
+                    type="button">
+                    2 L
+                </button>
+
+                <button
+                    class="bottle-choice"
+                    data-size="5"
+                    type="button">
+                    5 L
+                </button>
+
+                <button
+                    class="bottle-choice"
+                    data-size="10"
+                    type="button">
+                    10 L
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- STEP 3 -->
+
+        <div
+            class="report-step"
+            id="step3">
+
+            <label for="price">
+                السعر اللي لقيتو
+            </label>
+
+
+            <div class="price-input">
+
+                <input
+                    type="number"
+                    id="price"
+                    min="0"
+                    step="0.001"
+                    placeholder="مثال: 1.200">
+
+                <span>
+                    د.ت
+                </span>
+
+            </div>
+
+
+            <div class="official-price">
+
+                <span>
+                    السعر:
+                </span>
+
+                <strong id="minimumPrice">
+                    اختياري
+                </strong>
+
+            </div>
+
+
+            <p
+                class="price-warning"
+                id="priceWarning">
+            </p>
+
+        </div>
+
+
+        <!-- STEP 4 -->
+
+        <div
+            class="report-step"
+            id="step4">
+
+            <div class="confirmation">
+
+                <div class="confirmation-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    تأكد من المعلومات
+                </h3>
+
+                <div
+                    class="confirmation-data"
+                    id="confirmationData">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button
+                class="btn btn-secondary"
+                id="backBtn"
+                type="button">
+
+                رجوع
+
+            </button>
+
+
+            <button
+                class="btn btn-primary"
+                id="nextBtn"
+                type="button">
+
+                التالي
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
